@@ -8,10 +8,21 @@
     <script src="../dist/WebARKit.js"></script>
     <script>
       console.log(WebARKit)
-       WebARKit.WebARKitController.init().then(wark => {
-        wark.webarkit.test();
-        wark.initTracking()
-      })
+      /* const webARKitPipeline = {
+        trackableLoaded?: (trackableId: number) => void;
+        trackablesLoaded?: (trackableIds: number[]) => void;
+        initialized: (cameraMatrix: number[]) => {
+        };
+        tracking: (world: any, trackableId: number) => void;
+        trackingLost: () => void;
+        // Inidcate the processing of the video frame. Good to trigger the rendering loop
+        process: () => void;
+      }
+      */
+      // const webARKit = new WebARKit(webARKitPipeline);
+      // webARKit.startAR();
+
+
     </script>
   </body>
 </html>
