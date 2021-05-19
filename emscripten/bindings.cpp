@@ -4,5 +4,9 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(constant_bindings) {
     function("test", &test);
-    function("initTracking", &initTracking, allow_raw_pointers());
+    function("setup", &setup);
+    function("imageSetup", &imageSetup);
+    function("initTracking", &initTracking);
+    function("resetTracking", &resetTracking);
+    function("track", &track);
 }

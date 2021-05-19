@@ -2,15 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Simple example with WebARKit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=1">
+    <link rel="stylesheet" href="css/nft-style.css">
   </head>
   <body>
     <script src="../dist/WebARKit.js"></script>
     <script>
-      console.log(WebARKit)
-       WebARKit.WebARKitController.init().then(wark => {
-        wark.webarkit.test();
-        wark.initTracking()
+       WebARKit.WebARKitController.init(640, 480,'../examples/config.json').then(wark => {
+        wark.loadTracker('data/pinball.jpg');
+        wark.resetTracking();
+        wark.track()
       })
     </script>
   </body>

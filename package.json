@@ -1,6 +1,6 @@
 {
   "name": "@kalwalt/webarkit-testing",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "dist/WebARKit.js",
   "description": "Experimental WebARKit",
   "keywords": [
@@ -27,24 +27,28 @@
     "url": ""
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "babel-loader": "^8.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.13.9",
+    "@babel/preset-env": "^7.13.8",
+    "babel-loader": "^8.2.2",
+    "custom-event": "^1.0.1",
+    "three": "^0.126.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.5.0"
   },
   "scripts": {
-    "dev-es6": "webpack --mode development --progress --colors --watch",
+    "dev-es6": "webpack --mode development --progress --watch",
     "build-es6": "webpack --mode production",
     "build": "node tools/makem.js; echo Built at `date`",
     "build-no-libar": "node tools/makem.js --no-libar; echo Built at `date`",
+    "build-all-dev": "node tools/makem.js --no-libar; echo Built at `date` && webpack --mode development --progress --watch",
     "test": "grunt qunit",
     "watch": "./node_modules/.bin/watch 'npm run build' ./js/"
   },
   "license": "LGPL-3.0",
   "dependencies": {
-    "@babel/runtime": "^7.9.2",
-    "axios": "^0.19.2"
+    "@babel/runtime": "^7.13.9",
+    "axios": "^0.21.1",
+    "canvas": "^2.7.0"
   }
 }

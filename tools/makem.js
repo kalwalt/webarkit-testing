@@ -39,7 +39,7 @@ if (!EMSCRIPTEN_ROOT) {
 var EMCC = EMSCRIPTEN_ROOT ? path.resolve(EMSCRIPTEN_ROOT, 'emcc') : 'emcc';
 var EMPP = EMSCRIPTEN_ROOT ? path.resolve(EMSCRIPTEN_ROOT, 'em++') : 'em++';
 var OPTIMIZE_FLAGS = ' -Oz '; // -Oz for smallest size
-var MEM = 256 * 1024 * 1024; // 64MB
+var MEM = 512 * 1024 * 1024; // 64MB
 
 
 var SOURCE_PATH = path.resolve(__dirname, '../emscripten/') + '/';
@@ -174,6 +174,9 @@ FLAGS += ' -s USE_LIBJPEG';
 FLAGS += ' --memory-init-file 0 '; // for memless file
 FLAGS += ' -s "EXTRA_EXPORTED_RUNTIME_METHODS=[\'FS\']"';
 FLAGS += ' -s ALLOW_MEMORY_GROWTH=1';
+FLAGS += ' -fsanitize=address '
+FLAGS += ' -s ASSERTIONS=1 '
+//FLAGS += ' -s SAFE_HEAP=1 '
 
 var WASM_FLAGS = ' -s SINGLE_FILE=1 '
 var ES6_FLAGS = ' -s EXPORT_ES6=1 -s USE_ES6_IMPORT_META=0 -s MODULARIZE=1 ';
@@ -235,12 +238,13 @@ function clean_builds() {
 
     try {
         var files = fs.readdirSync(OUTPUT_PATH);
-				var filesLength = files.length;
+        var i;
+                var filesLength = files.length;
         if (filesLength > 0)
 				if (NO_LIBAR == true){
-					filesLength -= 1;
-				}
-            for (var i = 0; i < filesLength; i++) {
+                    i=1;
+				} else { i=0; }
+            for ( ;i < filesLength; i++) {
                 var filePath = OUTPUT_PATH + '/' + files[i];
                 if (fs.statSync(filePath).isFile())
                     fs.unlinkSync(filePath);
